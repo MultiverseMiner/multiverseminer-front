@@ -24,9 +24,7 @@ $('.accordion').on('click', 'dd', function (event) {
 });
 
 /*Custom scrollbar for slider, allows to move it around and style the way one pleases*/
-$('.chat .tabs-content > .content').perfectScrollbar({
-	suppressScrollX: true
-});
+$('.chat .tabs-content > .content').jScrollPane();
 
 /*Chat is there, just hit enter and type*/
 $(window).bind('keypress', function(e) {
@@ -56,7 +54,8 @@ $(document).on('click', '.menu-pop', function(){
 		$(windowClone).find('.window-title').text(windowType).css('textTransform', 'capitalize').parent('.menu-pop-window');
 
 		var internalHeightSync = function(){
-			$(windowClone).find('.internal-section').css('height', $(windowClone).height()*0.8).perfectScrollbar({suppressScrollX: true});
+			var estimatedInnerHeight = $(windowClone).height() - $(windowClone).find('.title-bar').height() - $(windowClone).find('.pop-window-toolbar').height() - $(windowClone).find('.pop-window-footer').height();
+			$(windowClone).find('.internal-section').css('height', estimatedInnerHeight).jScrollPane({contentWidth: '0px', autoReinitialise: true});
 		}
 
 		if(windowType == 'inventory')
@@ -77,12 +76,16 @@ $(document).on('click', '.menu-pop', function(){
 $(document).on('resize', '.menu-pop-window', function(e){
 	var currentWindow = $(e.target);
 
-	//Don't uncomment unless you know what you are doing. It may and probably will break UI elements and lag as... badly.
-	//var scrolltHeight = 0;
-	//estimatedOutterHeight = $(currentWindow).find('.internal-section').css('height', '100%').height() + $(currentWindow).find('.title-bar').height() + $(currentWindow).find('.pop-window-toolbar').height() + $(currentWindow).find('.pop-window-footer').height();
-	//$(currentWindow).closest('.menu-pop-window').css('max-height', estimatedOutterHeight);
-	
-	$(currentWindow).find('.internal-section').css('height', $(currentWindow).height()*0.8).perfectScrollbar('update');
+	//It's window size limiting. Don't uncomment unless you know what you are doing. It may and probably will break UI elements and lag as... badly.
+	//	console.log('internal:' + $(currentWindow).find('.internal-section')[0].scrollHeight);
+	//	console.log('titlebar:' + $(currentWindow).find('.title-bar').height());
+	//	console.log('toolbar:' + $(currentWindow).find('.pop-window-toolbar').height());
+	//	console.log('footer:' + $(currentWindow).find('.pop-window-footer').height());
+	//	var estimatedOutterHeight = $(currentWindow).find('.internal-section').prop('scrollHeight') + $(currentWindow).find('.title-bar').height() + $(currentWindow).find('.pop-window-toolbar').height() + $(currentWindow).find('.pop-window-footer').height();
+	//	$(currentWindow).closest('.menu-pop-window').css('max-height', estimatedOutterHeight);
+
+	var estimatedInnerHeight = $(currentWindow).height() - $(currentWindow).find('.title-bar').height() - $(currentWindow).find('.pop-window-toolbar').height() - $(currentWindow).find('.pop-window-footer').height();
+	$(currentWindow).find('.internal-section').css('height', estimatedInnerHeight);
 
 });
 

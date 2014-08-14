@@ -5560,9 +5560,9 @@ label {
   position: absolute;
   top: 0;
   left: 0;
-  min-width: 380px;
+  min-width: 390px;
   min-height: 380px;
-  width: 380px;
+  width: 390px;
   height: 380px;
   max-height: 100vh;
   max-width: 100vw;
@@ -5591,7 +5591,7 @@ label {
 
 .internal-section {
   overflow: hidden;
-  padding: 0.25rem 0; }
+  padding: 0.5rem 0; }
 
 /*inventory*/
 .inventory-item {
@@ -5621,38 +5621,14 @@ label {
 div.switch input:checked + label {
   opacity: 1; }
 
-/*perfect scrollbar*/
-.ps-container .ps-scrollbar-y-rail {
-  left: 0;
+/*scrollbar styling*/
+.jspVerticalBar, .jspTrack {
   background: none;
   width: 4px;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  border-radius: 0px; }
+  left: 0; }
 
-.ps-container .ps-scrollbar-y-rail.hover, .ps-container .ps-scrollbar-y-rail:hover {
-  background: none;
-  opacity: 1; }
-
-.ps-container .ps-scrollbar-y-rail.in-scrolling {
-  background: none; }
-
-.ps-container .ps-scrollbar-y {
+.jspDrag {
   background-color: #92c5f1;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  border-radius: 0px;
-  width: 4px;
-  opacity: 1; }
-
-.ps-container .ps-scrollbar-y-rail.hover .ps-scrollbar-y, .ps-container .ps-scrollbar-y-rail:hover .ps-scrollbar-y {
-  background-color: #92c5f1;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
-  border-radius: 0px;
-  opacity: 1; }
+  width: 4px; }
 
 /*# sourceMappingURL=main.css.map */
