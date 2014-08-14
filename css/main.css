@@ -1,3 +1,4 @@
+@import url(third_party.css);
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 /**
  * 1. Set default font family to sans-serif.
@@ -5287,6 +5288,12 @@ ul {
   font-weight: 300 !important;
   font-size: 0.8rem; }
 
+label {
+  font-family: Roboto, Arial, sans-serif !important;
+  font-weight: 300 !important;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9); }
+
 .no-gutter {
   padding: 0; }
 
@@ -5560,8 +5567,12 @@ ul {
   max-height: 100vh;
   max-width: 100vw;
   z-index: 100;
-  background: rgba(10, 20, 30, 0.9);
+  background: rgba(10, 20, 30, 0.8);
   overflow: hidden; }
+
+.front-window {
+  background: none repeat scroll 0 0 #0a141e;
+  z-index: 110; }
 
 .title-bar {
   padding: 0.2rem 0; }
@@ -5572,10 +5583,17 @@ ul {
 .window-close:hover {
   cursor: pointer; }
 
-.internal-section {
-  overflow: hidden;
+.pop-window-body {
+  height: 100%; }
+
+.pop-window-toolbar input {
   margin: 0.5rem 0; }
 
+.internal-section {
+  overflow: hidden;
+  padding: 0.25rem 0; }
+
+/*inventory*/
 .inventory-item {
   width: 50px;
   height: 50px;
@@ -5587,118 +5605,23 @@ ul {
   -moz-box-shadow: inset 0 0 5px #92c5f1;
   box-shadow: inset 0 0 5px #92c5f1; }
 
-.filters label {
-  font-family: Roboto, Arial, sans-serif !important;
-  font-weight: 300 !important;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.9); }
+/*options*/
+.settings-stack {
+  margin: 1rem 0; }
 
-.front-window {
-  z-index: 110; }
+.settings-stack p {
+  font-size: 0.8rem; }
 
-/*! perfect-scrollbar - v0.4.11
-* http://noraesae.github.com/perfect-scrollbar/
-* Copyright (c) 2014 Hyeonje Alex Jun; Licensed MIT */
-.ps-container .ps-scrollbar-x-rail {
-  position: absolute;
-  bottom: 3px;
-  height: 8px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  -o-transition: background-color 0.2s linear, opacity 0.2s linear;
-  -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
-  -moz-transition: background-color 0.2s linear, opacity 0.2s linear;
-  transition: background-color 0.2s linear, opacity 0.2s linear; }
+.options-header {
+  color: #92c5f1; }
 
-.ps-container:hover .ps-scrollbar-x-rail, .ps-container.hover .ps-scrollbar-x-rail {
-  opacity: 0.6;
-  filter: alpha(opacity=60); }
+.switch-label {
+  font-size: 0.875rem; }
 
-.ps-container .ps-scrollbar-x-rail:hover, .ps-container .ps-scrollbar-x-rail.hover {
-  background-color: #eee;
-  opacity: 0.9;
-  filter: alpha(opacity=90); }
+div.switch input:checked + label {
+  opacity: 1; }
 
-.ps-container .ps-scrollbar-x-rail.in-scrolling {
-  background-color: #eee;
-  opacity: 0.9;
-  filter: alpha(opacity=90); }
-
-.ps-container .ps-scrollbar-y-rail {
-  position: absolute;
-  right: 3px;
-  width: 8px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  -o-transition: background-color 0.2s linear, opacity 0.2s linear;
-  -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
-  -moz-transition: background-color 0.2s linear, opacity 0.2s linear;
-  transition: background-color 0.2s linear, opacity 0.2s linear; }
-
-.ps-container:hover .ps-scrollbar-y-rail, .ps-container.hover .ps-scrollbar-y-rail {
-  opacity: 0.6;
-  filter: alpha(opacity=60); }
-
-.ps-container .ps-scrollbar-y-rail:hover, .ps-container .ps-scrollbar-y-rail.hover {
-  background-color: #eee;
-  opacity: 0.9;
-  filter: alpha(opacity=90); }
-
-.ps-container .ps-scrollbar-y-rail.in-scrolling {
-  background-color: #eee;
-  opacity: 0.9;
-  filter: alpha(opacity=90); }
-
-.ps-container .ps-scrollbar-x {
-  position: absolute;
-  bottom: 0;
-  height: 8px;
-  background-color: #aaa;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -o-transition: background-color 0.2s linear;
-  -webkit-transition: background-color 0.2s linear;
-  -moz-transition: background-color 0.2s linear;
-  transition: background-color 0.2s linear; }
-
-.ps-container.ie6 .ps-scrollbar-x {
-  font-size: 0; }
-
-.ps-container .ps-scrollbar-x-rail:hover .ps-scrollbar-x, .ps-container .ps-scrollbar-x-rail.hover .ps-scrollbar-x {
-  background-color: #999; }
-
-.ps-container .ps-scrollbar-y {
-  position: absolute;
-  right: 0;
-  width: 8px;
-  background-color: #aaa;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  -o-transition: background-color 0.2s linear;
-  -webkit-transition: background-color 0.2s linear;
-  -moz-transition: background-color 0.2s linear;
-  transition: background-color 0.2s linear; }
-
-.ps-container.ie6 .ps-scrollbar-y {
-  font-size: 0; }
-
-.ps-container .ps-scrollbar-y-rail:hover .ps-scrollbar-y, .ps-container .ps-scrollbar-y-rail.hover .ps-scrollbar-y {
-  background-color: #999; }
-
-.ps-container.ie .ps-scrollbar-x, .ps-container.ie .ps-scrollbar-y {
-  visibility: hidden; }
-
-.ps-container.ie:hover .ps-scrollbar-x, .ps-container.ie:hover .ps-scrollbar-y, .ps-container.ie.hover .ps-scrollbar-x, .ps-container.ie.hover .ps-scrollbar-y {
-  visibility: visible; }
-
+/*perfect scrollbar*/
 .ps-container .ps-scrollbar-y-rail {
   left: 0;
   background: none;
@@ -5731,78 +5654,5 @@ ul {
   -ms-border-radius: 0px;
   border-radius: 0px;
   opacity: 1; }
-
-/*resizeable jQuery UI styling*/
-.ui-resizable {
-  position: relative; }
-
-.ui-resizable-handle {
-  position: absolute;
-  font-size: 0.1px;
-  display: block;
-  -ms-touch-action: none;
-  touch-action: none; }
-
-.ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle {
-  display: none; }
-
-.ui-resizable-n {
-  cursor: n-resize;
-  height: 7px;
-  width: 100%;
-  top: -5px;
-  left: 0; }
-
-.ui-resizable-s {
-  cursor: s-resize;
-  height: 7px;
-  width: 100%;
-  bottom: -5px;
-  left: 0; }
-
-.ui-resizable-e {
-  cursor: e-resize;
-  width: 7px;
-  right: -5px;
-  top: 0;
-  height: 100%; }
-
-.ui-resizable-w {
-  cursor: w-resize;
-  width: 7px;
-  left: -5px;
-  top: 0;
-  height: 100%; }
-
-.ui-resizable-se {
-  cursor: se-resize;
-  width: 12px;
-  height: 12px;
-  right: 1px;
-  bottom: 1px; }
-
-.ui-resizable-sw {
-  cursor: sw-resize;
-  width: 9px;
-  height: 9px;
-  left: -5px;
-  bottom: -5px; }
-
-.ui-resizable-nw {
-  cursor: nw-resize;
-  width: 9px;
-  height: 9px;
-  left: -5px;
-  top: -5px; }
-
-.ui-resizable-ne {
-  cursor: ne-resize;
-  width: 9px;
-  height: 9px;
-  right: -5px;
-  top: -5px; }
-
-.ui-icon, .ui-widget-content .ui-icon {
-  background-image: url('../img/resize_icon.png'); }
 
 /*# sourceMappingURL=main.css.map */

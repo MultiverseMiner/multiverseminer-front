@@ -1,3 +1,4 @@
+//GLOBALS
 $(document).foundation({
 	accordion: {
 		// specify the class used for active (or open) accordion panels
@@ -10,6 +11,7 @@ $(document).foundation({
 	}
 });
 
+//SPECIFICS
 $('.accordion').on('click', 'dd', function (event) {
 	$(this).closest('.content').slideToggle('fast');
 
@@ -36,20 +38,38 @@ $(window).bind('keypress', function(e) {
 /*Pop-up with menu items*/
 $(document).on('click', '.menu-pop', function(){
 
-	var windowTitle = $(this).attr('data-window-name');
+	var windowType = $(this).attr('data-window-type');
+	console.log(windowType);
 
-	if($('.menu-pop-window[data-window-name="' + windowTitle + '"]').length){
+	if($('.menu-pop-window[data-window-type="' + windowType + '"]').length){
 
 		if($('.front-window').length){
 			$('.front-window').removeClass('front-window');
 		}
-		$('.menu-pop-window[data-window-name="' + windowTitle + '"]').addClass('front-window');
+		$('.menu-pop-window[data-window-type="' + windowType + '"]').addClass('front-window');
 
 	}
 	else{
-		var windowClone = $('.menu-pop-window.pattern').clone().appendTo('.outters').removeClass('hide pattern').resizable().draggable({ handle: '.title-bar'}).attr('data-window-name', windowTitle);
-		$(windowClone).find('.window-title').text(windowTitle).parent('.menu-pop-window');	
-		$(windowClone).find('.internal-section').css('height', $(windowClone).height()*0.8).perfectScrollbar({suppressScrollX: true});
+		$('.front-window').removeClass('front-window');
+
+		var windowClone = $('.menu-pop-window.pattern').clone().appendTo('.outters').removeClass('hide pattern').addClass('front-window').resizable().draggable({ handle: '.title-bar'}).attr('data-window-type', windowType);
+		$(windowClone).find('.window-title').text(windowType).css('textTransform', 'capitalize').parent('.menu-pop-window');
+
+		var internalHeightSync = function(){
+			$(windowClone).find('.internal-section').css('height', $(windowClone).height()*0.8).perfectScrollbar({suppressScrollX: true});
+		}
+
+		if(windowType == 'inventory')
+		{
+			$(windowClone).find('.pop-window-body').load( "examples/inventory.html", internalHeightSync);
+		}
+		else if(windowType == 'options'){
+			$(windowClone).find('.pop-window-body').load( "examples/options.html", internalHeightSync);
+		}
+		else if(windowType == 'mail'){
+			$(windowClone).find('.pop-window-body').load( "examples/mail.html", internalHeightSync);
+		}
+
 	}
 
 });
@@ -57,7 +77,13 @@ $(document).on('click', '.menu-pop', function(){
 $(document).on('resize', '.menu-pop-window', function(e){
 	var currentWindow = $(e.target);
 
-	$(currentWindow).find('.internal-section').css('height', $(currentWindow).height()-70).perfectScrollbar('update');;
+	//Don't uncomment unless you know what you are doing. It may and probably will break UI elements and lag as... badly.
+	//var scrolltHeight = 0;
+	//estimatedOutterHeight = $(currentWindow).find('.internal-section').css('height', '100%').height() + $(currentWindow).find('.title-bar').height() + $(currentWindow).find('.pop-window-toolbar').height() + $(currentWindow).find('.pop-window-footer').height();
+	//$(currentWindow).closest('.menu-pop-window').css('max-height', estimatedOutterHeight);
+	
+	$(currentWindow).find('.internal-section').css('height', $(currentWindow).height()*0.8).perfectScrollbar('update');
+
 });
 
 $(document).on('click', '.menu-pop-window', function(e){
