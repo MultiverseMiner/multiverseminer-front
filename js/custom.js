@@ -11,6 +11,10 @@ $(document).foundation({
 	}
 });
 
+$.expr[':'].softEmpty = function(obj){
+  return obj.innerHTML.trim().length === 0;
+};
+
 //SPECIFICS
 $('.accordion').on('click', 'dd', function (event) {
 	$(this).closest('.content').slideToggle('fast');
@@ -44,29 +48,85 @@ $(document).on('click', '.menu-pop', function(){
 		if($('.front-window').length){
 			$('.front-window').removeClass('front-window');
 		}
-		$('.menu-pop-window[data-window-type="' + windowType + '"]').addClass('front-window');
+		$('.menu-pop-window[data-window-type="' + windowType + '"]').addClass('front-window').show();
 
 	}
 	else{
 		$('.front-window').removeClass('front-window');
 
-		var windowClone = $('.menu-pop-window.pattern').clone().appendTo('.outters').removeClass('hide pattern').addClass('front-window').resizable().draggable({ handle: '.title-bar'}).attr('data-window-type', windowType);
-		$(windowClone).find('.window-title').text(windowType).css('textTransform', 'capitalize').parent('.menu-pop-window');
+		var windowClone = $('.menu-pop-window.pattern').clone().appendTo('.outters').removeClass('hide pattern').addClass('front-window').draggable({ handle: '.title-bar'}).attr('data-window-type', windowType);
 
 		var internalHeightSync = function(){
-			var estimatedInnerHeight = $(windowClone).height() - $(windowClone).find('.title-bar').height() - $(windowClone).find('.pop-window-toolbar').height() - $(windowClone).find('.pop-window-footer').height();
+			var estimatedInnerHeight = $(windowClone).height() - $(windowClone).find('.title-bar').outerHeight() - $(windowClone).find('.pop-window-toolbar').outerHeight() - $(windowClone).find('.pop-window-footer').outerHeight();
 			$(windowClone).find('.internal-section').css('height', estimatedInnerHeight).jScrollPane({contentWidth: '0px', autoReinitialise: true});
 		}
 
-		if(windowType == 'inventory')
-		{
-			$(windowClone).find('.pop-window-body').load( "examples/inventory.html", internalHeightSync);
+		if(windowType == 'inventory'){
+
+			$(windowClone).find('.window-title').text(windowType).css('textTransform', 'capitalize');
+
+			$(windowClone).resizable().find('.pop-window-body').load( "examples/inventory.html", function(e){
+				internalHeightSync();
+
+				$('.game-item').each(function(e){
+					$(this).draggable({ revert: "invalid", cursor: "move" });
+				});	
+			});
 		}
 		else if(windowType == 'options'){
-			$(windowClone).find('.pop-window-body').load( "examples/options.html", internalHeightSync);
+
+			$(windowClone).find('.window-title').text(windowType).css('textTransform', 'capitalize');
+			$(windowClone).resizable().find('.pop-window-body').load( "examples/options.html", internalHeightSync);
 		}
-		else if(windowType == 'mail'){
-			$(windowClone).find('.pop-window-body').load( "examples/mail.html", internalHeightSync);
+		else if(windowType == 'hero'){
+
+			$(windowClone).find('.window-title').text('_Rufus The Planet Destroyer 1995_');
+
+			$(windowClone).addClass('hero').find('.pop-window-body').load( "examples/hero.html", function(){
+
+				$('.game-item').each(function(e){
+					$(this).draggable({ revert: "invalid", cursor: "move" });
+				});
+
+				$('.inventory-socket').each(function(e){
+
+					$(this).droppable({
+						accept: '[data-item-type="' + $(this).attr('id') + '"]',
+						activeClass: 'ui-state-hover',
+						hoverClass: 'ui-state-active',
+						drop: function( event, ui ) {
+							$('.ui-draggable-dragging').appendTo(this).css({
+								'top':'0',
+								'left':'0'
+							});
+						}
+					});
+				});
+
+				$('.storage-socket').each(function(e){
+
+					$(this).droppable({
+						accept: '.player-item',
+						activeClass: 'ui-state-hover',
+						hoverClass: 'ui-state-active',
+						drop: function( event, ui ) {
+							if($(this).is(':softEmpty')){
+								$('.ui-draggable-dragging').appendTo(this).css({
+									'top':'0',
+									'left':'0'
+								});
+							}
+							else{
+								var emptySocket = $('.storage-socket:softEmpty:first');
+								$('.ui-draggable-dragging').appendTo(emptySocket).css({
+									'top':'0',
+									'left':'0'
+								});
+							}
+						}
+					});
+				});
+			});
 		}
 
 	}
@@ -77,14 +137,14 @@ $(document).on('resize', '.menu-pop-window', function(e){
 	var currentWindow = $(e.target);
 
 	//It's window size limiting. Don't uncomment unless you know what you are doing. It may and probably will break UI elements and lag as... badly.
-	//	console.log('internal:' + $(currentWindow).find('.internal-section')[0].scrollHeight);
-	//	console.log('titlebar:' + $(currentWindow).find('.title-bar').height());
-	//	console.log('toolbar:' + $(currentWindow).find('.pop-window-toolbar').height());
-	//	console.log('footer:' + $(currentWindow).find('.pop-window-footer').height());
-	//	var estimatedOutterHeight = $(currentWindow).find('.internal-section').prop('scrollHeight') + $(currentWindow).find('.title-bar').height() + $(currentWindow).find('.pop-window-toolbar').height() + $(currentWindow).find('.pop-window-footer').height();
-	//	$(currentWindow).closest('.menu-pop-window').css('max-height', estimatedOutterHeight);
+	//		console.log('internal:' + $(currentWindow).find('.internal-section')[0].scrollHeight);
+	//		console.log('titlebar:' + $(currentWindow).find('.title-bar').height());
+	//		console.log('toolbar:' + $(currentWindow).find('.pop-window-toolbar').height());
+	//		console.log('footer:' + $(currentWindow).find('.pop-window-footer').height());
+	//		var estimatedOutterHeight = $(currentWindow).find('.internal-section').prop('scrollHeight') + $(currentWindow).find('.title-bar').height() + $(currentWindow).find('.pop-window-toolbar').height() + $(currentWindow).find('.pop-window-footer').height();
+	//		$(currentWindow).closest('.menu-pop-window').css('max-height', estimatedOutterHeight);
 
-	var estimatedInnerHeight = $(currentWindow).height() - $(currentWindow).find('.title-bar').height() - $(currentWindow).find('.pop-window-toolbar').height() - $(currentWindow).find('.pop-window-footer').height();
+	var estimatedInnerHeight = $(currentWindow).height() - $(currentWindow).find('.title-bar').outerHeight() - $(currentWindow).find('.pop-window-toolbar').outerHeight() - $(currentWindow).find('.pop-window-footer').outerHeight();
 	$(currentWindow).find('.internal-section').css('height', estimatedInnerHeight);
 
 });
@@ -97,4 +157,31 @@ $(document).on('click', '.menu-pop-window', function(e){
 /*Windows closing*/
 $(document).on('click', '.window-close', function(){
 	$(this).closest('.menu-pop-window').remove();
+});
+
+$(document).on('click', '.global-close', function(){
+
+	if($(this).find('i').hasClass('fa-level-up')){
+		$('.menu-pop-window').hide();
+		$(this).find('i').removeClass('fa-level-up').addClass('fa-level-down');
+	}
+	else{
+		$('.menu-pop-window').not('.pattern').show();
+		$(this).find('i').removeClass('fa-level-down').addClass('fa-level-up');
+	}
+
+});
+
+/*Equpment actions*/
+
+$(document).on('dblclick', '.player-item', function(e){
+	var item = $(e.target),
+		targetSlot = $(item).attr('data-item-type');
+
+	$(item).appendTo('#'+targetSlot);
+
+});
+
+$.ajaxSetup ({
+	cache: false
 });
