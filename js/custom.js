@@ -1,3 +1,5 @@
+/*global $, document, console, window:false */
+
 //GLOBALS
 $(document).foundation({
 	accordion: {
@@ -12,7 +14,7 @@ $(document).foundation({
 });
 
 $.expr[':'].softEmpty = function(obj){
-  return obj.innerHTML.trim().length === 0;
+	return obj.innerHTML.trim().length === 0;
 };
 
 //SPECIFICS
@@ -59,7 +61,7 @@ $(document).on('click', '.menu-pop', function(){
 		var internalHeightSync = function(){
 			var estimatedInnerHeight = $(windowClone).height() - $(windowClone).find('.title-bar').outerHeight() - $(windowClone).find('.pop-window-toolbar').outerHeight() - $(windowClone).find('.pop-window-footer').outerHeight();
 			$(windowClone).find('.internal-section').css('height', estimatedInnerHeight).jScrollPane({contentWidth: '0px', autoReinitialise: true});
-		}
+		};
 
 		if(windowType == 'inventory'){
 
@@ -71,6 +73,32 @@ $(document).on('click', '.menu-pop', function(){
 				$('.game-item').each(function(e){
 					$(this).draggable({ revert: "invalid", cursor: "move" });
 				});	
+
+				$('.storage-socket').each(function(e){
+
+					$(this).droppable({
+						accept: '.game-item',
+						activeClass: 'ui-state-hover',
+						hoverClass: 'ui-state-active',
+						drop: function( event, ui ) {
+							if($(this).is(':softEmpty')){
+								$('.ui-draggable-dragging').appendTo(this).css({
+									'top':'0',
+									'left':'0'
+								});
+							}
+							else{
+								// var emptySocket = $('.storage-socket:softEmpty:first');
+								// $('.ui-draggable-dragging').appendTo(emptySocket).css({
+								// 'top':'0',
+								// 'left':'0'
+								// });
+								$('.ui-draggable-dragging').draggable({ revert: true });
+							}
+						}
+					});
+				});
+
 			});
 		}
 		else if(windowType == 'options'){
@@ -128,9 +156,15 @@ $(document).on('click', '.menu-pop', function(){
 				});
 			});
 		}
+		else if(windowType == 'crafting'){
+
+			$(windowClone).addClass('crafting').find('.pop-window-body').load( "examples/crafting.html", function(){
+
+			});
+
+		}
 
 	}
-
 });
 
 $(document).on('resize', '.menu-pop-window', function(e){
