@@ -158,8 +158,10 @@ $(document).on('click', '.menu-pop', function(){
 		}
 		else if(windowType == 'crafting'){
 
-			$(windowClone).addClass('crafting').find('.pop-window-body').load( "examples/crafting.html", function(){
+			$(windowClone).find('.window-title').text(windowType).css('textTransform', 'capitalize');
 
+			$(windowClone).resizable().addClass('crafting').find('.pop-window-body').load( "examples/crafting.html", function(){
+				internalHeightSync();
 			});
 
 		}
@@ -213,6 +215,62 @@ $(document).on('dblclick', '.player-item', function(e){
 		targetSlot = $(item).attr('data-item-type');
 
 	$(item).appendTo('#'+targetSlot);
+
+});
+
+/*Crafting panel transformation*/
+
+$(document).on('resize', '.crafting', function(e){
+	var craftingWindow = $(e.target);
+	
+	/*Needs to be optimized ex. FF*/
+
+	if($(craftingWindow).width() > 699 && $('.crafting-preview.active').length){
+		$('.recipes-column').addClass('large-4').removeClass('large-12');
+		$('.recipe-preview').appendTo('.crafting-preview-right');
+		$('.crafting-preview-right').show().addClass('active');
+		$('.crafting-preview-bottom.active').hide().removeClass('active');
+		$('.crafting .recipes').show();
+
+		$('.crafting .close-recipe').hide();
+	}
+	else if($('.crafting-preview.active').length && $('.crafting-preview.active').length){
+		$('.recipes-column').addClass('large-12').removeClass('large-4');
+		$('.recipe-preview').appendTo('.crafting-preview-bottom');
+		$('.crafting-preview-bottom').show().addClass('active');
+
+		if('.crafting-preview-right.active'){
+			$('.crafting .recipes').hide();
+			$('.crafting .close-recipe').show();
+		}
+
+		$('.crafting-preview-right.active').hide().removeClass('active');
+	}
+
+});
+
+$(document).on('click', '.recipes > li', function(e){
+
+	if($('crafting-preview.active').length){
+		//TBI
+	}
+	else if($('.crafting').width() > 699){
+		$('.recipes-column').addClass('large-4').removeClass('large-12');
+		$('.recipe-preview').appendTo('.crafting-preview-right');
+		$('.crafting-preview-right').show().addClass('active');
+		$('.crafting .close-recipe').hide();
+	}
+	else{
+		$('.crafting-preview-bottom').show().addClass('active');
+		$('.crafting .recipes').hide();
+	}
+
+});
+
+$(document).on('click', '.close-recipe', function(e){
+
+	$(e.target).closest('.crafting-preview.active').hide();
+	$('.crafting .recipes').show();
 
 });
 

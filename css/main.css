@@ -5301,6 +5301,9 @@ label {
 .has-tip {
   font-weight: 300; }
 
+.light-blue {
+  color: #92c5f1; }
+
 .sea-green {
   color: #13a89e; }
 
@@ -5309,6 +5312,26 @@ label {
 
 .sunny-yellow {
   color: #ffae00; }
+
+.button.tiny {
+  padding: 0.2rem 0.35rem;
+  background: none;
+  border: 1px solid rgba(146, 197, 241, 0.25);
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.25rem 0.5rem; }
+
+.button.tiny:hover {
+  background: rgba(146, 197, 241, 0.25); }
+
+.button.small {
+  padding: 0.5rem 0.75rem;
+  background: none;
+  border: 1px solid rgba(146, 197, 241, 0.25);
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.25rem 0.5rem; }
+
+.button.small:hover {
+  background: rgba(146, 197, 241, 0.25); }
 
 /*elements*/
 .logo {
@@ -5561,7 +5584,7 @@ label {
   width: 20px;
   height: 20px;
   background: rgba(146, 197, 241, 0.15);
-  position: absolute;
+  position: fixed;
   right: 5px;
   bottom: 5px;
   z-index: 200;
@@ -5609,17 +5632,9 @@ label {
 .pop-window-footer {
   padding: 0.25rem 0; }
 
-.pop-window-footer .button.tiny {
-  padding: 0.2rem 0.35rem;
-  background: none;
-  border: 1px solid rgba(146, 197, 241, 0.25);
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0.25rem 0.5rem; }
-
-.pop-window-footer .button.tiny:hover {
-  background: rgba(146, 197, 241, 0.25); }
-
 .internal-section {
+  position: relative;
+  min-height: 200px;
   overflow: scroll;
   padding: 0.25rem 0 !important; }
 
@@ -5704,6 +5719,68 @@ label {
 
 div.switch input:checked + label {
   opacity: 1; }
+
+/*crafting*/
+.crafting .craft-search {
+  height: 1.5rem;
+  padding: 0rem 0.5rem;
+  border: 1px solid rgba(146, 197, 241, 0.5);
+  background: none;
+  color: #92c5f1;
+  font-size: 0.75rem;
+  margin-top: 0.25rem; }
+
+.crafting .craft-search:focus {
+  border: 1px solid #92c5f1;
+  background: none; }
+
+.crafting .recipes {
+  list-style: none;
+  margin: auto 0; }
+
+.crafting .recipes li {
+  border-bottom: 1px solid #92c5f1;
+  padding: 0.5rem 0; }
+
+.crafting .recipes li:hover {
+  background: rgba(146, 197, 241, 0.05); }
+
+.crafting .recipes img, .recipe-preview .head img {
+  max-width: 32px;
+  margin-right: 0.5rem; }
+
+.crafting .recipe-preview .head {
+  padding: 0.5rem 0.9375rem;
+  border-top: 1px solid #92c5f1;
+  border-bottom: 1px solid #92c5f1;
+  background: rgba(146, 197, 241, 0.05); }
+
+.crafting .recipe-preview .head .recipe-name {
+  margin-top: 0.4rem; }
+
+.crafting .recipe-preview .head .close-recipe {
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.5rem;
+  -o-transition: color 0.2s linear;
+  -webkit-transition: color 0.2s linear;
+  -moz-transition: color 0.2s linear;
+  transition: color 0.2s linear; }
+
+.crafting .recipe-preview .head .close-recipe:hover {
+  color: #92c5f1; }
+
+.crafting .recipe-preview .body {
+  padding: 0.75rem 0.9375rem; }
+
+.crafting .recipe-preview .recipe-info {
+  list-style: none;
+  margin-left: 0; }
+
+.crafting .recipe-preview .recipe-requirements .title {
+  margin-bottom: 0.5rem; }
+
+.crafting .recipe-preview .recipe-requirements img {
+  margin: 0 0.25rem; }
 
 /*scrollbar styling*/
 .jspVerticalBar, .jspTrack {
