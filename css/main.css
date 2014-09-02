@@ -5295,6 +5295,11 @@ label {
   font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.9); }
 
+hr {
+  height: 1px;
+  border: 0;
+  background: rgba(146, 197, 241, 0.25); }
+
 .no-gutter {
   padding: 0; }
 
@@ -5795,5 +5800,21 @@ div.switch input:checked + label {
 .jspPane {
   margin: 0 !important;
   padding-left: 6px !important; }
+
+/*login page*/
+.game-access {
+  margin-top: 10rem; }
+
+.game-access input[type="text"] {
+  background: rgba(146, 197, 241, 0.1);
+  border-style: none;
+  color: rgba(255, 255, 255, 0.9);
+  display: block;
+  font-family: inherit;
+  font-size: 0.8rem;
+  height: 2rem;
+  padding: 0 0.2rem;
+  transition: box-shadow 0.45s ease 0s, border-color 0.45s ease-in-out 0s;
+  width: 100%; }
 
 /*# sourceMappingURL=main.css.map */
