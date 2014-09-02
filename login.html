@@ -19,33 +19,22 @@
 			</div>
 		</div>
 
-		<div class="row game-access">
-			<div class="large-3 large-offset-2 columns">
-				<div class="registration-form">
-					<h6>Register</h6>
-					<label>Prefered nickname
-						<input type="text" >
-					</label>
-					<label>E-mail address
-						<input type="text" >
-					</label>
-					<a href="#" class="right small button">Register</a>
-				</div>
-			</div>
-			<div class="large-3 large-offset-2 columns end">
+		<div class="row game-access" data-equalizer>
+			<div class="large-3 large-offset-2 columns" data-equalizer-watch>
 				<div class="signin-form">
 					<h6>Sign in</h6>
 					<label>E-mail address
 						<input type="text" >
 					</label>
-					<label>Password 
-						<input type="text" >
-					</label>
 					<input id="checkbox1" type="checkbox"><label for="checkbox1">Remember me</label>
 					<a href="#" class="right small button">Sign in</a>
-
-					<hr>
-
+				</div>
+			</div>
+			<div class="text-center large-2 columns" data-equalizer-watch>
+				<p class="v-center">or</p>
+			</div>
+			<div class="large-3 columns end" data-equalizer-watch>
+				<div class="signin-form v-center">
 					<div class="global-id-login text-center">
 						<a href="#" class="tiny button">Login with <i class="fa fa-google-plus"></i></a>
 						<a href="#" class="tiny button">Login with <i class="fa fa-facebook"></i></a>
@@ -58,5 +47,8 @@
 		<!--		<script src="js/vendor/jquery.js"></script>-->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="js/foundation.min.js"></script>
+		<script>
+			$(document).foundation();
+		</script>
 	</body>
 </html>
