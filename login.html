@@ -12,34 +12,51 @@
 		<script src="js/vendor/modernizr.js"></script>
 	</head>
 	<body>
+		<div class="row game-access v-center">
+			<div class="large-3 small-centered columns end">
 
-		<div class="row">
-			<div class="large-4 columns">
-				<img class="logo" src="img/logo_placeholder.png">
-			</div>
-		</div>
-
-		<div class="row game-access" data-equalizer>
-			<div class="large-3 large-offset-2 columns" data-equalizer-watch>
 				<div class="signin-form">
-					<h6>Sign in</h6>
-					<label>E-mail address
-						<input type="text" >
-					</label>
-					<input id="checkbox1" type="checkbox"><label for="checkbox1">Remember me</label>
-					<a href="#" class="right small button">Sign in</a>
-				</div>
-			</div>
-			<div class="text-center large-2 columns" data-equalizer-watch>
-				<p class="v-center">or</p>
-			</div>
-			<div class="large-3 columns end" data-equalizer-watch>
-				<div class="signin-form v-center">
-					<div class="global-id-login text-center">
-						<a href="#" class="tiny button">Login with <i class="fa fa-google-plus"></i></a>
-						<a href="#" class="tiny button">Login with <i class="fa fa-facebook"></i></a>
-						<a href="#" class="tiny button">Login with <i class="fa fa-twitter"></i></a>
+					<img class="logo" src="img/logo_placeholder.png">
+
+					<!--window 1-->
+					<div class="row hide">
+						<div class="large-12 columns">
+							<div class="global-id-login">
+								<ul class="stack button-group">
+									<li><a href="#" class="google button"><i class="fa fa-google-plus"></i> Login using Google+ account </a></li>
+									<li><a href="#" class="facebook button"><i class="fa fa-facebook"></i> Login with Facebook </a></li>
+									<li><a href="#" class="twitter button"><i class="fa fa-twitter"></i> Login with Twitter </a></li>
+								</ul>
+							</div>
+						</div>
 					</div>
+
+					<!--window 2-->
+					<div class="row">
+						<div class="large-12 columns">
+							<label><h6>Desired nickname (visible for others)</h6>
+								<input type="text" placeholder="" />
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+							<h6>Character's sex</h6>
+
+							<div class="row text-center">
+								<ul class="button-group">
+									<li><a href="#" class="small button">Male</a></li>
+									<li><a href="#" class="small button">Female</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="large-12 columns">
+								<a href="#" class="right small button">Submit</a>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>
