@@ -10,7 +10,9 @@ module.exports = function(grunt) {
             server: {
                 options: {
                     livereload: true,
-                    directory: "dist"
+                    open: {
+                        target: 'http://127.0.0.1:8000/dist/index.html'
+                    }
                 }
             }
         },
@@ -36,7 +38,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: 'src/img',
-                    src: ['**/*.png'],
+                    src: ['**/*.{png,jpg}'],
                     dest: 'dist/img'
                 }]
             }
@@ -62,17 +64,23 @@ module.exports = function(grunt) {
 
         uglify: {
             dev: {
+                options: {
+                    compress: false,
+                    mangle: false,
+                    beautify: true
+                },
                 files: {
                     'dist/js/base.min.js': [
-                        'bower_components/jquery/jquery.min.js',
-                        'bower_components/jquery-ui/jquery-ui.min.js',
-                        'bower_components/lodash/dist/lodash.min.js',
                         'bower_components/modernizr/modernizr.js',
+                        'bower_components/jquery/dist/jquery.min.js',
+                        'bower_components/jquery-ui/jquery-ui.min.js',
                         'bower_components/foundation/js/foundation.min.js',
+                        'bower_components/lodash/dist/lodash.min.js',
                         'bower_components/angular/angular.min.js',
                         'bower_components/angular-cookies/angular-cookies.min.js',
                         'bower_components/angular-foundation/mm-foundation.min.js',
                         'bower_components/angular-foundation/mm-foundation-tpls.min.js',
+                        'src/ext/**/*.js',
                         'src/js/**/*.js'
                     ]
                 }
@@ -81,7 +89,7 @@ module.exports = function(grunt) {
 
         watch: {
             dev: {
-                files: ['src/js/**/*.js', 'src/sass/**/*.scss'],
+                files: ['src/js/**/*.js', 'src/sass/**/*.scss', 'src/views/**/*.html'],
                 tasks: ['build'],
                 options: {
                     livereload: true
@@ -92,7 +100,7 @@ module.exports = function(grunt) {
 
     grunt.log.warn = grunt.warn;
 
-    grunt.registerTask('build', ['jshint:dev', 'uglify:dev', 'sass:dev', 'imagemin:build', 'copy:dev']);
+    grunt.registerTask('build', ['jshint:dev', 'newer:uglify:dev', 'newer:sass:dev', 'newer:imagemin:build', 'newer:copy:dev']);
     grunt.registerTask('dev', ['build', 'connect:server', 'watch:dev']);
     grunt.registerTask('default', ['dev']);
 
