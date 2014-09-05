@@ -34,6 +34,11 @@ module.exports = function(grunt) {
                     cwd: 'src/sass',
                     src: '*.css',
                     dest: 'dist/css'
+                }, {
+                    expand: true,
+                    cwd: 'bower_components/foundation/css',
+                    src: 'foundation.css',
+                    dest: 'dist/css'
                 }]
             }
         },
@@ -60,7 +65,7 @@ module.exports = function(grunt) {
         sass: {
             dev: {
                 files: {
-                    'dist/css/main.css': 'src/sass/main.scss'
+                    'dist/css/main.css': 'src/sass/main-page.scss'
                 }
             }
         },
