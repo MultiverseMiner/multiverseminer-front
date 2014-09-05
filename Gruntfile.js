@@ -29,6 +29,11 @@ module.exports = function(grunt) {
                     cwd: 'bower_components/font-awesome/fonts',
                     src: '**/*',
                     dest: 'dist/fonts/'
+                }, {
+                    expand: true,
+                    cwd: 'src/sass',
+                    src: '*.css',
+                    dest: 'dist/css'
                 }]
             }
         },
@@ -55,9 +60,7 @@ module.exports = function(grunt) {
         sass: {
             dev: {
                 files: {
-                    'dist/css/main.css': [
-                        'src/sass/**/*.scss'
-                    ]
+                    'dist/css/main.css': 'src/sass/main.scss'
                 }
             }
         },
