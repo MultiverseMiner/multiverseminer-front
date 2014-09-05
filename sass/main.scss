@@ -16,7 +16,7 @@ $sea_green: #13a89e;
 $salmon_red: #e25942;
 $sunny_yellow: #ffae00;
 $light_blue: #92c5f1;
-$navy_blue: rgb(10, 20, 30);
+$navy_blue: #0b151c;
 
 $avg_green: #24b311;
 
@@ -33,6 +33,17 @@ $central_fontsize: 0.8rem;
 	-webkit-box-shadow: inset 0 0 5px $color;
 	-moz-box-shadow: inset 0 0 5px $color;
 	box-shadow: inset 0 0 5px $color;
+}
+@mixin outer-shadow-5($color){
+	-webkit-box-shadow: 0 0 5px $color;
+	-moz-box-shadow: 0 0 5px $color;
+	box-shadow: 0 0 5px $color;
+}
+@mixin transition($option, $time){
+	-o-transition: $option $time linear;
+	-webkit-transition: $option $time linear;
+	-moz-transition: $option $time linear;
+	transition: $option $time linear;
 }
 
 
@@ -76,6 +87,12 @@ hr{
 
 	margin-left: auto;margin-right:auto;
 }
+a{
+	color: $light_blue;
+}
+a:hover{
+	color: $custom_white;
+}
 .no-gutter{
 	padding: 0;
 }
@@ -95,16 +112,17 @@ hr{
 	color: $sunny_yellow;
 }
 .button, .button-group > li > button, .button-group > li .button{
-	background: none;
+	background: $navy_blue;
 	border: 1px solid rgba($light_blue, 0.25);
 	color: $custom_white;
+	
+	@include transition(background, 0.2s);
 }
 .button:hover, .button:focus{
 	background: rgba($light_blue, 0.25);
 }
 .button.tiny{
 	padding: 0.2rem 0.35rem;
-	background: none;
 	border: 1px solid rgba($light_blue, 0.25);
 	color: $custom_white;
 	margin: 0.25rem 0.5rem;
@@ -114,7 +132,6 @@ hr{
 }
 .button.small{
 	padding: 0.5rem 0.75rem;
-	background: none;
 	border: 1px solid rgba($light_blue, 0.25);
 	color: $custom_white;
 	margin: 0.25rem 0.5rem;
@@ -129,6 +146,9 @@ hr{
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	transform: translateY(-50%);
+}
+.hide {
+    display: none !important;
 }
 /*elements*/
 
@@ -617,31 +637,45 @@ div.switch input:checked + label {
 
 /*login page*/
 .signin-form{
-	background: rgba($navy_blue, 0.75);
 	padding: 1rem 2rem;
 }
-.game-access input[type="text"]{
-	background: rgba($light_blue, 0.1);
-	border-style: none;
+.signin-form .field{
+	margin: 0 auto 0.5rem;
+}
+.signin-form span.error, .signin-form small.error{
+	background: none;
+	color: $salmon_red;
+	font-style: normal;
+	font-weight: 300;
+	
+	padding: 0 0.25rem;
+}
+.signin-form label{
+	color: $light_blue;
+}
+.signin-form input{
+	background: rgba($navy_blue, 0.75);
+	border: 1px solid rgba($light_blue, 0.25);
+	box-shadow: none;
 	color: $custom_white;
-	display: block;
-	font-family: inherit;
-	font-size: $central_fontsize;
-	padding: 0 0.2rem;
-	transition: box-shadow 0.45s ease 0s, border-color 0.45s ease-in-out 0s;
+	margin: 0;
+	
+	@include transition(box-shadow, 0.2s);
+}
+.signin-form input:focus, .signin-form input:active {
+	background: rgba($navy_blue, 0.75);
+	border: 1px solid rgba($light_blue, 0.25);
+	
+	@include outer-shadow-5(rgba($light_blue, 0.5));
+}
+
+/*footer*/
+
+footer{
+	position: absolute;
+	bottom: 0;
 	width: 100%;
 }
-.global-id-login .button, .global-id-login .button-group.stack > li > .button{
-	border: none;
-	padding: 0.5rem 2rem;
-	margin: 0.25rem auto;	
-}
-.global-id-login .button.google{
-	background:#e34429;
-}
-.global-id-login .button.facebook{
-	background:#3b5998;
-}
-.global-id-login .button.twitter{
-	background:#6cdfea;
+.foot-menu{
+	opacity: 0.75;
 }

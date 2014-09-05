@@ -5853,6 +5853,12 @@ hr {
   margin-left: auto;
   margin-right: auto; }
 
+a {
+  color: #92c5f1; }
+
+a:hover {
+  color: rgba(255, 255, 255, 0.9); }
+
 .no-gutter {
   padding: 0; }
 
@@ -5872,16 +5878,19 @@ hr {
   color: #ffae00; }
 
 .button, .button-group > li > button, .button-group > li .button {
-  background: none;
+  background: #0b151c;
   border: 1px solid rgba(146, 197, 241, 0.25);
-  color: rgba(255, 255, 255, 0.9); }
+  color: rgba(255, 255, 255, 0.9);
+  -o-transition: background 0.2s linear;
+  -webkit-transition: background 0.2s linear;
+  -moz-transition: background 0.2s linear;
+  transition: background 0.2s linear; }
 
 .button:hover, .button:focus {
   background: rgba(146, 197, 241, 0.25); }
 
 .button.tiny {
   padding: 0.2rem 0.35rem;
-  background: none;
   border: 1px solid rgba(146, 197, 241, 0.25);
   color: rgba(255, 255, 255, 0.9);
   margin: 0.25rem 0.5rem; }
@@ -5891,7 +5900,6 @@ hr {
 
 .button.small {
   padding: 0.5rem 0.75rem;
-  background: none;
   border: 1px solid rgba(146, 197, 241, 0.25);
   color: rgba(255, 255, 255, 0.9);
   margin: 0.25rem 0.5rem; }
@@ -5905,6 +5913,9 @@ hr {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%); }
+
+.hide {
+  display: none !important; }
 
 /*elements*/
 .logo {
@@ -6371,32 +6382,46 @@ div.switch input:checked + label {
 
 /*login page*/
 .signin-form {
-  background: rgba(10, 20, 30, 0.75);
   padding: 1rem 2rem; }
 
-.game-access input[type="text"] {
-  background: rgba(146, 197, 241, 0.1);
-  border-style: none;
+.signin-form .field {
+  margin: 0 auto 0.5rem; }
+
+.signin-form span.error, .signin-form small.error {
+  background: none;
+  color: #e25942;
+  font-style: normal;
+  font-weight: 300;
+  padding: 0 0.25rem; }
+
+.signin-form label {
+  color: #92c5f1; }
+
+.signin-form input {
+  background: rgba(11, 21, 28, 0.75);
+  border: 1px solid rgba(146, 197, 241, 0.25);
+  box-shadow: none;
   color: rgba(255, 255, 255, 0.9);
-  display: block;
-  font-family: inherit;
-  font-size: 0.8rem;
-  padding: 0 0.2rem;
-  transition: box-shadow 0.45s ease 0s, border-color 0.45s ease-in-out 0s;
+  margin: 0;
+  -o-transition: box-shadow 0.2s linear;
+  -webkit-transition: box-shadow 0.2s linear;
+  -moz-transition: box-shadow 0.2s linear;
+  transition: box-shadow 0.2s linear; }
+
+.signin-form input:focus, .signin-form input:active {
+  background: rgba(11, 21, 28, 0.75);
+  border: 1px solid rgba(146, 197, 241, 0.25);
+  -webkit-box-shadow: 0 0 5px rgba(146, 197, 241, 0.5);
+  -moz-box-shadow: 0 0 5px rgba(146, 197, 241, 0.5);
+  box-shadow: 0 0 5px rgba(146, 197, 241, 0.5); }
+
+/*footer*/
+footer {
+  position: absolute;
+  bottom: 0;
   width: 100%; }
 
-.global-id-login .button, .global-id-login .button-group.stack > li > .button {
-  border: none;
-  padding: 0.5rem 2rem;
-  margin: 0.25rem auto; }
-
-.global-id-login .button.google {
-  background: #e34429; }
-
-.global-id-login .button.facebook {
-  background: #3b5998; }
-
-.global-id-login .button.twitter {
-  background: #6cdfea; }
+.foot-menu {
+  opacity: 0.75; }
 
 /*# sourceMappingURL=main.css.map */
