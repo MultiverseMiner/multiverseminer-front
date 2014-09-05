@@ -8,7 +8,7 @@ It's an initial release (or alpha release if you prefer), not everything has ass
 
 ###Setup
 1. Install NodeJS and Ruby
-2. `npm install -g grunt-cli bower'
+2. `npm install -g grunt-cli bower`
 3. `gem install sass`
 4. `npm install && bower install`
 5. `grunt dev`
