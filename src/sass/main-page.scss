@@ -146,6 +146,15 @@ a:hover{
 .hide {
   display: none !important;
 }
+
+.signin-form input.ng-invalid.ng-dirty {
+	border: 1px solid $salmon_red;
+}
+
+.signin-form input.ng-valid.ng-dirty {
+	border: 1px solid $sea_green;
+}
+
 /*elements*/
 
 .logo{
