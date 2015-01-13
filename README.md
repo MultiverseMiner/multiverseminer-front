@@ -1,6 +1,8 @@
 Multiverse Miner [front]
 =====================
 
+**Not used! See [MultiverseMiner](http://github.com/MultiverseMiner/multiverseminer)**
+
 Front-end redesign for Multiverse Miner. In similar fashion to Multiverse Miner project, not all of the art elements are under open source license, however you can feel free to play with the code.
 
 ###Before you post an issue
